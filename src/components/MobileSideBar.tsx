@@ -29,7 +29,7 @@ const MobileSideBar = ({
       </SheetTrigger>
 
       <SheetContent side="left" className="p-0">
-        <SideBar isPro={isPro} apiLimitCount={apiLimitCount} />
+        <SideBar />
       </SheetContent>
     </Sheet>
   )

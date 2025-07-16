@@ -1,3 +1,8 @@
+interface SideBarProps {
+  isPro: boolean;
+  apiLimitCount: number;
+}
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { Montserrat } from 'next/font/google'
