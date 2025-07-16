@@ -1,13 +1,17 @@
-'use client'
+// 'use client'
 
-import { useEffect } from 'react'
-import { Crisp } from 'crisp-sdk-web'
+// import { useEffect } from 'react'
+// import { Crisp } from 'crisp-sdk-web'
 
-const CrispChat = () => {
-  useEffect(() => {
-    Crisp.configure(process.env.NEXT_PUBLIC_CRISP_CHAT_ID!)
-  }, [])
-  return null
-}
+// const CrispChat = () => {
+//   useEffect(() => {
+//     Crisp.configure(process.env.NEXT_PUBLIC_CRISP_CHAT_ID!)
+//   }, [])
+//   return null
+// }
 
-export default CrispChat
+// export default CrispChat
+
+
+const CrispChat = () => null;
+export default CrispChat;
