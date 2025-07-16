@@ -30,7 +30,7 @@
 import { Montserrat } from 'next/font/google'
 //import './globals.css'
 import { cn } from '@/lib/utils'
-import SideBar from '@/components/sidebar'
+import SideBar from '@/components/SideBar'
 
 const font = Montserrat({
   weight: '600',
