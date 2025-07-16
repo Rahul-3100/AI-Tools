@@ -12,7 +12,12 @@ const replicate = new Replicate({
 
 export async function POST(req: Request) {
   try {
-    const { userId } = auth()
+    let userId;
+try {
+  userId = auth()?.userId;
+} catch (error) {
+  console.log('[AUTH_ERROR]', error);
+}
     const body = await req.json()
     const { prompt } = body
 

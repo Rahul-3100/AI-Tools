@@ -11,7 +11,12 @@ const settingsUrl = absoluteUrl('/settings')
 
 export async function GET(req: Request) {
   try {
-    const { userId } = auth()
+    let userId;
+try {
+  userId = auth()?.userId;
+} catch (error) {
+  console.log('[AUTH_ERROR]', error);
+}
     const user = await currentUser()
 
     if (!userId || !user) {

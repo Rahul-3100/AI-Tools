@@ -14,7 +14,12 @@ const openai = new OpenAIApi(configuration)
 
 export async function POST(req: Request) {
   try {
-    const { userId } = auth()
+    let userId;
+try {
+  userId = auth()?.userId;
+} catch (error) {
+  console.log('[AUTH_ERROR]', error);
+}
     const body = await req.json()
     const { prompt, amount = 1, resolution = '512x512' } = body
 

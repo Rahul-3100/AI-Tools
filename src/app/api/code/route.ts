@@ -20,7 +20,12 @@ const instructionMessage: ChatCompletionRequestMessage = {
 
 export async function POST(req: Request) {
   try {
-    const { userId } = auth()
+    let userId
+try {
+  userId = auth()?.userId
+} catch (error) {
+  console.log('[AUTH_ERROR]', error)
+}
     const body = await req.json()
     const { messages } = body
 
