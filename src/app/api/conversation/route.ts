@@ -8,18 +8,19 @@ import { checkSubscription } from '@/lib/subscription'
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
+  basePath: process.env.OPENAI_BASE_URL,
 })
-
 const openai = new OpenAIApi(configuration)
 
 export async function POST(req: Request) {
   try {
     let userId;
-try {
-  userId = auth()?.userId;
-} catch (error) {
-  console.log('[AUTH_ERROR]', error);
-}
+    try {
+      userId = auth()?.userId;
+    } catch (error) {
+      console.log('[AUTH_ERROR]', error);
+    }
+
     const body = await req.json()
     const { messages } = body
 
@@ -32,7 +33,7 @@ try {
     }
 
     if (!messages) {
-      return new NextResponse('Message are required', { status: 400 })
+      return new NextResponse('Messages are required', { status: 400 })
     }
 
     const freeTrial = await checkApiLimit()
@@ -44,10 +45,18 @@ try {
       })
     }
 
-    const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages,
-    })
+    const response = await openai.createChatCompletion(
+      {
+        model: "mistralai/mistral-7b-instruct:free",
+        messages,
+      },
+      {
+        headers: {
+          "HTTP-Referer": "http://localhost:3000", // ✅ update to your domain on production
+          "X-Title": "Rahul AI Studio",
+        },
+      }
+    )
 
     if (!isPro) {
       await increaseApiLimit()
