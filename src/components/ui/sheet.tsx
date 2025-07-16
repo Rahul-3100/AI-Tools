@@ -15,9 +15,12 @@ const SheetClose = SheetPrimitive.Close
 
 const SheetPortal = ({
   className,
+  children,
   ...props
-}: SheetPrimitive.DialogPortalProps) => (
-  <SheetPrimitive.Portal className={cn(className)} {...props} />
+}: { className?: string; children: React.ReactNode } & React.ComponentPropsWithoutRef<typeof SheetPrimitive.Portal>) => (
+  <SheetPrimitive.Portal {...props}>
+    <div className={cn(className)}>{children}</div>
+  </SheetPrimitive.Portal>
 )
 SheetPortal.displayName = SheetPrimitive.Portal.displayName
 
