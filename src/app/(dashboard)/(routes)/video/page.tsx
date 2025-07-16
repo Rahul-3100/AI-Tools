@@ -1,5 +1,5 @@
 'use client'
-
+import { toast } from "react-hot-toast";
 import Empty from '@/components/Empty'
 import Heading from '@/components/Heading'
 import Loader from '@/components/Loader'
